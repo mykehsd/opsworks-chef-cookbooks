@@ -23,12 +23,5 @@ node[:deploy].each do |application, deploy|
   # Install dependencies using composer install
   include_recipe 'composer::install'
 
-  # Clear and warm-up Symfony cache if warmup_cache option is defined in the application configuration
-      execute 'clear_symfony_cache_prod' do
-        user    "root"
-        cwd     "#{deploy[:deploy_to]}/current"
-        command "php app/console cache:clear --env=prod --no-debug"
-        action :run
-      end
 
 end
